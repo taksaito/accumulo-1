@@ -66,6 +66,8 @@ public class MiniAccumuloConfigImpl {
 
   private String[] nativePathItems = null;
 
+  private int numFilesystems = 1;
+
   /**
    * @param dir
    *          An empty or nonexistant directory that Accumulo and Zookeeper can store data in. Creating the directory is left to the user. Java 7, Guava, and
@@ -450,5 +452,22 @@ public class MiniAccumuloConfigImpl {
    */
   public void setProperty(Property p, String value) {
     this.siteConfig.put(p.getKey(), value);
+  }
+  
+  /**
+   * Unset an arbitrary configuration property
+   * 
+   * @since 1.6.0
+   */
+  public void unsetProperty(Property p) {
+    this.siteConfig.remove(p.getKey());
+  }
+  
+  public void setNumFilesystems(int numFilesystems) {
+    this.numFilesystems = numFilesystems;
+  }
+  
+  public int getNumFilesystems() {
+    return numFilesystems;
   }
 }
